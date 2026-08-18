@@ -1,0 +1,83 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 1. Primitives
+    function isSignedIn() { return request.auth != null; }
+    function isEmailVerified() { return isSignedIn() && request.auth.token.email_verified == true; }
+    function isSuperAdmin() { 
+      return isSignedIn() && (
+        request.auth.token.email.lower() == 'rodrigofrison88@gmail.com'
+      ); 
+    }
+    function isAdmin() { 
+      return isSuperAdmin() || (isSignedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid))); 
+    }
+    
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    function isValidId(id) { 
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); 
+    }
+    
+    // 2. Entity Blueprints
+    function isValidProduct(data) {
+      return data.keys().hasAll(['name', 'price', 'category', 'stock', 'images', 'createdAt'])
+        && data.keys().size() <= 12
+        && data.name is string && data.name.size() >= 1 && data.name.size() <= 100
+        && data.description is string && data.description.size() <= 2000
+        && data.price is number && data.price >= 0
+        && data.stock is int && data.stock >= 0
+        && data.category is string && data.category.size() <= 50
+        && data.images is list && data.images.size() <= 10
+        && (data.images.size() == 0 || data.images[0] is string)
+        && data.createdAt == request.time;
+    }
+
+    function isValidOrder(data) {
+      return data.keys().hasAll(['customerName', 'customerEmail', 'items', 'total', 'status', 'createdAt'])
+        && data.keys().size() <= 10
+        && data.customerName is string && data.customerName.size() >= 1 && data.customerName.size() <= 200
+        && data.customerEmail is string && data.customerEmail.size() >= 5 && data.customerEmail.size() <= 200
+        && data.items is list && data.items.size() > 0 && data.items.size() <= 50
+        && data.total is number && data.total >= 0
+        && data.status == 'pending'
+        && data.createdAt == request.time
+        && data.customerEmail == request.auth.token.email;
+    }
+
+    // 3. Collection Rules
+    
+    match /admins/{adminId} {
+      allow read: if isAdmin();
+      allow write: if isSuperAdmin() && isValidId(adminId);
+    }
+
+    match /products/{productId} {
+      allow read, write: if true;
+    }
+
+    match /categories/{categoryId} {
+      allow read, write: if true;
+    }
+
+    match /orders/{orderId} {
+      allow read, write: if true;
+    }
+
+    match /testimonials/{testimonialId} {
+      allow read: if true;
+      allow create: if isEmailVerified() && incoming().content is string && incoming().content.size() <= 1000 && isValidId(testimonialId);
+      allow delete, update: if isAdmin();
+    }
+
+    match /settings/{config} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

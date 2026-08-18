@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #00A299;
+  --color-secondary: #006D67;
+  --color-accent: #FFDC00;
+  --color-background: #0A0F0F;
+  --color-surface: #141B1B;
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", sans-serif;
+
+  --border-radius-xl: 1.5rem;
+  --border-radius-2xl: 2rem;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-white antialiased selection:bg-primary selection:text-black;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+.glass {
+  background: rgba(30, 30, 30, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-hover {
+  @apply transition-all duration-300 hover:bg-white/10 hover:border-white/20;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-linear-to-r from-white to-gray-400;
+}
+
+.primary-gradient {
+  @apply bg-linear-to-br from-primary to-secondary;
+}
+
+.badge {
+  @apply text-[10px] bg-primary text-white px-2 py-0.5 rounded font-bold uppercase tracking-wider;
+}
+
+.yellow-accent { @apply text-accent; }
+.teal-accent { @apply text-primary; }

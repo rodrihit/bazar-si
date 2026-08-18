@@ -1,0 +1,6 @@
+{
+  "name": "Bazar YES Paraná",
+  "description": "Premium ecommerce landing and admin dashboard for Bazar YES Paraná, featuring a modern dark theme, product catalog, and full management panel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

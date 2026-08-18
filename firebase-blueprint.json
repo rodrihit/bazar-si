@@ -1,0 +1,80 @@
+{
+  "entities": {
+    "products": {
+      "title": "Product",
+      "description": "Store products including household items, kitchenware, and decor.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "discountPrice": { "type": "number" },
+        "stock": { "type": "integer" },
+        "category": { "type": "string" },
+        "images": { "type": "array" },
+        "featured": { "type": "boolean" },
+        "dailyPromo": { "type": "boolean" },
+        "installments": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "price", "category", "stock"]
+    },
+    "categories": {
+      "title": "Category",
+      "description": "Product categories.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "icon": { "type": "string" }
+      },
+      "required": ["name", "slug"]
+    },
+    "orders": {
+      "title": "Order",
+      "description": "Customer purchase orders.",
+      "type": "object",
+      "properties": {
+        "customerName": { "type": "string" },
+        "customerEmail": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "items": { "type": "array" },
+        "total": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "shipped", "delivered", "cancelled"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "paymentMethod": { "type": "string" }
+      },
+      "required": ["customerName", "items", "total", "status"]
+    },
+    "testimonials": {
+      "title": "Testimonial",
+      "description": "Customer reviews and feedback.",
+      "type": "object",
+      "properties": {
+        "userName": { "type": "string" },
+        "content": { "type": "string" },
+        "stars": { "type": "integer" },
+        "avatar": { "type": "string" }
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Global application and business settings.",
+      "type": "object",
+      "properties": {
+        "businessName": { "type": "string" },
+        "tagline": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "address": { "type": "string" },
+        "hours": { "type": "object" }
+      }
+    }
+  },
+  "firestore": {
+    "/products/{productId}": { "schema": "products", "description": "Individual product details" },
+    "/categories/{categoryId}": { "schema": "categories", "description": "Product categories" },
+    "/orders/{orderId}": { "schema": "orders", "description": "Customer orders" },
+    "/testimonials/{testimonialId}": { "schema": "testimonials", "description": "Customer testimonials" },
+    "/settings/config": { "schema": "settings", "description": "Global config" }
+  }
+}

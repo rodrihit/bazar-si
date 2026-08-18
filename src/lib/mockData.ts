@@ -155,6 +155,114 @@ export const mockProducts: Product[] = [
       'https://i.postimg.cc/BZVjyJTw/chatgpt-image-20-jun-2026-01-35-10-p-m-1-4264d8cde2253b40c617819733160337-480-0.webp'
     ],
     createdAt: new Date().toISOString()
+  },
+  {
+    id: '40',
+    name: 'Juego de Toallas Algodón Egipcio 4 Piezas',
+    description: 'Set de 4 toallas de algodón egipcio 100% de 550g/m². Incluye 2 toallones de baño y 2 toallas de mano. Máxima absorción, suavidad excepcional y colores que no destiñen. Un lujo cotidiano para tu baño.',
+    price: 24900,
+    discountPrice: 19900,
+    stock: 22,
+    category: 'Textiles y Blanquería',
+    images: [
+      '/images/products/toallas-algodon.png'
+    ],
+    featured: true,
+    installments: 6,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '41',
+    name: 'Juego de Sábanas 400 Hilos Queen',
+    description: 'Juego de sábanas de percal 400 hilos para cama Queen. Incluye sábana ajustable, sábana encimera y 2 fundas de almohada. Tacto sedoso, frescas en verano y cálidas en invierno. Costuras reforzadas de alta durabilidad.',
+    price: 38500,
+    stock: 14,
+    category: 'Textiles y Blanquería',
+    images: [
+      '/images/products/sabanas-400-hilos.png'
+    ],
+    installments: 12,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '42',
+    name: 'Set de Macetas de Cerámica Trío',
+    description: 'Trío de macetas de cerámica esmaltada en tonos neutros con plato incluido. Medidas escalonadas (10, 14 y 18 cm) con orificio de drenaje. Ideales para suculentas, cactus y plantas de interior. Diseño moderno que decora cualquier ambiente.',
+    price: 13200,
+    discountPrice: 10900,
+    stock: 26,
+    category: 'Jardín y Exterior',
+    images: [
+      '/images/products/macetas-ceramica.png'
+    ],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '43',
+    name: 'Farol Solar LED para Exterior',
+    description: 'Farol solar de metal negro con panel fotovoltaico integrado y luz LED cálida. Carga durante el día y se enciende automáticamente al anochecer. Resistente al agua (IP44), ideal para jardín, patio o balcón. No consume electricidad.',
+    price: 15800,
+    stock: 40,
+    category: 'Jardín y Exterior',
+    images: [
+      '/images/products/farol-solar.png'
+    ],
+    featured: true,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '44',
+    name: 'Comedero Doble Acero Inoxidable para Mascotas',
+    description: 'Comedero doble con bowls de acero inoxidable desmontables sobre soporte elevado antideslizante. Facilita la digestión de tu mascota y mantiene el piso limpio. Apto para lavavajillas. Ideal para perros y gatos medianos.',
+    price: 9600,
+    discountPrice: 7900,
+    stock: 35,
+    category: 'Mascotas',
+    images: [
+      '/images/products/comedero-mascotas.png'
+    ],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '45',
+    name: 'Guirnalda de Luces LED Cálida 10m',
+    description: 'Guirnalda de 100 luces LED de luz cálida sobre cable transparente de 10 metros. 8 modos de iluminación y función de memoria. Uso interior y exterior. Perfecta para ambientar patios, habitaciones, eventos y fiestas.',
+    price: 6900,
+    stock: 60,
+    category: 'Iluminación',
+    images: [
+      '/images/products/guirnalda-led.png'
+    ],
+    dailyPromo: true,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '46',
+    name: 'Velador Táctil Regulable',
+    description: 'Velador de mesa de luz con control táctil y 3 niveles de intensidad. Diseño minimalista con base metálica y luz LED cálida de bajo consumo. Sin botones ni perillas: solo tocá la base para encender y regular. Ideal para lectura y ambientes relajados.',
+    price: 11400,
+    stock: 18,
+    category: 'Iluminación',
+    images: [
+      '/images/products/velador-tactil.png'
+    ],
+    installments: 6,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '47',
+    name: 'Set de Cuchillos Acero Inox 6 Piezas con Taco',
+    description: 'Juego de 6 cuchillos de acero inoxidable con taco de madera. Incluye cuchillo cocinero, deshuesador, pan, multiuso, verduras y chaira. Hoja de alta dureza con filo duradero y mangos ergonómicos. Indispensable en toda cocina.',
+    price: 32900,
+    discountPrice: 26900,
+    stock: 11,
+    category: 'Cocina',
+    images: [
+      '/images/products/set-cuchillos.png'
+    ],
+    featured: true,
+    installments: 12,
+    createdAt: new Date().toISOString()
   }
 ];
 
@@ -166,5 +274,9 @@ export const categories = [
   { id: '5', name: 'Electro Hogar', slug: 'electro', icon: 'Zap' },
   { id: '6', name: 'Organización', slug: 'organizacion', icon: 'LayoutGrid' },
   { id: '7', name: 'Baño', slug: 'bano', icon: 'Bath' },
-  { id: '8', name: 'Decoración', slug: 'deco', icon: 'Home' }
+  { id: '8', name: 'Decoración', slug: 'deco', icon: 'Home' },
+  { id: '9', name: 'Textiles y Blanquería', slug: 'textiles', icon: 'Bed' },
+  { id: '10', name: 'Jardín y Exterior', slug: 'jardin', icon: 'Flower2' },
+  { id: '11', name: 'Iluminación', slug: 'iluminacion', icon: 'Lightbulb' },
+  { id: '12', name: 'Mascotas', slug: 'mascotas', icon: 'PawPrint' }
 ];

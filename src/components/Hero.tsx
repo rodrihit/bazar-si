@@ -6,7 +6,7 @@ import { cn } from '../lib/utils';
 
 export default function Hero({ onDealsClick }: { onDealsClick: () => void }) {
   const navigate = useNavigate();
-  const [heroImage, setHeroImage] = useState('https://images.unsplash.com/photo-1544190807-c19956461c3c?auto=format&fit=crop&q=80&w=1000');
+  const [heroImage, setHeroImage] = useState('/images/hero-bazar.png');
   const [heroBg, setHeroBg] = useState('https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1600');
   const [heroVideo, setHeroVideo] = useState('https://assets.mixkit.co/videos/preview/mixkit-kitchen-interior-with-modern-furniture-and-plants-41584-large.mp4');
   const [isPlayerOpen, setIsPlayerOpen] = useState(false);

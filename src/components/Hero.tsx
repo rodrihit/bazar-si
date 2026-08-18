@@ -4,9 +4,15 @@ import { ArrowRight, Sparkles, X, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '../lib/utils';
 
+const FALLBACK_HERO_IMAGE = '/images/hero-bazar.png';
+// URLs externas viejas que ya no funcionan: si están guardadas en localStorage, las ignoramos.
+const BROKEN_HERO_IMAGES = [
+  'https://images.unsplash.com/photo-1544190807-c19956461c3c'
+];
+
 export default function Hero({ onDealsClick }: { onDealsClick: () => void }) {
   const navigate = useNavigate();
-  const [heroImage, setHeroImage] = useState('/images/hero-bazar.png');
+  const [heroImage, setHeroImage] = useState(FALLBACK_HERO_IMAGE);
   const [heroBg, setHeroBg] = useState('https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1600');
   const [heroVideo, setHeroVideo] = useState('https://assets.mixkit.co/videos/preview/mixkit-kitchen-interior-with-modern-furniture-and-plants-41584-large.mp4');
   const [isPlayerOpen, setIsPlayerOpen] = useState(false);
@@ -15,7 +21,8 @@ export default function Hero({ onDealsClick }: { onDealsClick: () => void }) {
     const savedImg = localStorage.getItem('bazar_yes_hero_image');
     const savedBg = localStorage.getItem('bazar_yes_hero_bg');
     const savedVid = localStorage.getItem('bazar_yes_hero_video');
-    if (savedImg) setHeroImage(savedImg);
+    const isBrokenSaved = savedImg && BROKEN_HERO_IMAGES.some((u) => savedImg.startsWith(u));
+    if (savedImg && !isBrokenSaved) setHeroImage(savedImg);
     if (savedBg) setHeroBg(savedBg);
     if (savedVid) setHeroVideo(savedVid);
   }, []);
@@ -81,6 +88,11 @@ export default function Hero({ onDealsClick }: { onDealsClick: () => void }) {
               alt="Bazar Premium" 
               className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700 pointer-events-none"
               referrerPolicy="no-referrer"
+              onError={(e) => {
+                if (e.currentTarget.src !== window.location.origin + FALLBACK_HERO_IMAGE) {
+                  e.currentTarget.src = FALLBACK_HERO_IMAGE;
+                }
+              }}
              />
           </div>
           
